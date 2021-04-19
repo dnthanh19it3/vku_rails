@@ -1,0 +1,9 @@
+application.scss 
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ application.js
+
+//= require jquery
+//= require bootstrap-sprockets

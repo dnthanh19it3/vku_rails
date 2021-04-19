@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categories: one
+  MetaTitle: MyString
+  MetaDescription: MyString
+  MetaKeyword: MyString
+  Slug: MyString
+  Title: MyString
+  Avatar: MyString
+  SimpleContent: MyString
+  Content: MyString
+  Banner: 1
+  Status: 1
+  Pin: 1
+
+two:
+  categories: two
+  MetaTitle: MyString
+  MetaDescription: MyString
+  MetaKeyword: MyString
+  Slug: MyString
+  Title: MyString
+  Avatar: MyString
+  SimpleContent: MyString
+  Content: MyString
+  Banner: 1
+  Status: 1
+  Pin: 1

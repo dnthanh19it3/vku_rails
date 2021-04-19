@@ -1,0 +1,1 @@
+rails g model Admin UserName:string password_digest:string DepartmentId:integer
