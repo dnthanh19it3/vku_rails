@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # CSS GEM
 gem "sprockets-rails", :require => "sprockets/railtie"
 gem "bootstrap-sass", "~> 3.3.7"
+gem "ancestry"
+gem "awesome_nested_set"

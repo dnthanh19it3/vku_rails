@@ -1,1 +1,1 @@
-rails g model Admin UserName:string password_digest:string DepartmentId:integer
+rails g model cms_category ParentID:integer Name_vi:string Name_en:string Slug_vi:string Slug_en:string Index:integer

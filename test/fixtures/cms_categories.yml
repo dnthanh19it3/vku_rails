@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ParentID: 
+  Name_vi: 
+  Name_en: 
+  Slug_vi: 
+  Slug_en: MyString
+  Index: 1
+
+two:
+  ParentID: 
+  Name_vi: 
+  Name_en: 
+  Slug_vi: 
+  Slug_en: MyString
+  Index: 1
