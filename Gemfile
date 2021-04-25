@@ -58,5 +58,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # CSS GEM
 gem "sprockets-rails", :require => "sprockets/railtie"
 gem "bootstrap-sass", "~> 3.3.7"
-gem "ancestry"
-gem "awesome_nested_set"
+gem 'will_paginate', '>= 3.0'
+gem "will_paginate-bootstrap"
+gem 'will_paginate-bootstrap4'
+# CK EDITOR
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick', '4.7.0'
+gem 'paperclip'
+gem 'ckeditor'
+
+# gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

@@ -1,3 +1,6 @@
 class Cms < ApplicationRecord
-  belongs_to :categories
+    mount_uploader :Avatar, AvatarUploader
+    belongs_to :cms_category
+    # attribute :cms_categories.Name_vi
+    attr_accessor :Name_vi
 end

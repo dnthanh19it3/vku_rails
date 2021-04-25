@@ -1,0 +1,123 @@
+<%content_for :body do%>
+<% render template: "vku/layouts/carousel" %>
+<div class="row">
+    <div class="col-md-5">
+        <div class="default-block">
+            <div class="title title-left-red mb-3">
+                tin tức - sự kiện nổi bật
+            </div>
+            <ul class="newevent-container">
+                <%@headnew.each do |cm|%>
+                <%if cm.Avatar.to_s.include? "http"%>
+                    <% avatar = "http://"+cm.Avatar.to_s.slice(cm.Avatar.to_s.index("http")+8, cm.Avatar.to_s.length)%>
+                <%else%>
+                    <% avatar = cm.Avatar.url%>
+                <%end%>
+
+                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="<%= avatar %>"/>
+                            <span class="time-badge"><%=cm.created_at%></span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="<%=vku_post_detail_path(slug: cm.Slug_vi)%>"><%=cm.Title_vi%></a></div>
+                        <div class="description"><%=cm.SimpleContent_vi%></div>
+                    </div>
+                </li>
+                <%end%>
+            </ul>
+        </div>
+        <div class="default-block mt-3 mb-3">
+            <div class="title title-left-red  mb-3">
+                tin tức - sự kiện khác
+            </div>
+            <ul class="newevent-container">
+                <%@othernew.each do |cm|%>
+                <%if cm.Avatar.to_s.include? "http"%>
+                    <% avatar = "http://"+cm.Avatar.to_s.slice(cm.Avatar.to_s.index("http")+8, cm.Avatar.to_s.length)%>
+                <%else%>
+                    <% avatar = cm.Avatar.url%>
+                <%end%>
+                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="<%=avatar%>"/>
+                    </div>
+                    <div class="otherev-link"><a href="<%=vku_post_detail_path(slug: cm.Slug_vi)%>"><%=cm.Title_vi%></a></div>
+                </li>
+                <%end%>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="default-block mb-3">
+            <div class="title title-left-yellow  mb-3">
+                thông báo
+            </div>
+            <ul class="newevent-container">
+                <%@annoument.each do |cm|%>
+                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm"><%=cm.created_at.day%>-<%=cm.created_at.month%></div>
+                        <div class="y"><%=cm.created_at.year%></div>
+                    </div>
+                    <div class="annou-link"><a href="<%=vku_post_detail_path(slug: cm.Slug_vi)%>"><%=cm.Title_vi%></a></div>
+                </li>
+                <%end%>
+            </ul>
+        </div>
+
+        <div class="default-block mt-3 mb-3">
+            <div class="title title-left-yellow mb-3">
+                social media
+            </div>
+            <div class="social-media">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fvku.udn.vn&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=947748449088802" width="500" height="700" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="default-block">
+            <div class="title title-left-blue">
+                đối tác
+            </div>
+            <div class="sponsor-wrapper">
+                <ul id="demo">
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>

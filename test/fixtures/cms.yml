@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  MetaTitle: MyString
+  MetaDescription: MyString
+  MetaKeyword: MyString
+  Slug_vi: MyString
+  Slug_en: MyString
+  Title_vi: MyString
+  Title_en: MyString
+  Avatar: MyString
+  SimpleContent_vi: MyString
+  SimpleContent_en: MyString
+  Content_vi: MyString
+  Content_en: MyString
+  Status: 1
+  Pin: 1
+  Banner: 1
+  Place: 1
+  ViewCount: 1
+  Author: 1
+  PostTime: 2021-04-23 22:56:15
+  UpdateTime: 2021-04-23 22:56:15
+  Tags: MyString
+  cms_categories: 
+
+two:
+  MetaTitle: MyString
+  MetaDescription: MyString
+  MetaKeyword: MyString
+  Slug_vi: MyString
+  Slug_en: MyString
+  Title_vi: MyString
+  Title_en: MyString
+  Avatar: MyString
+  SimpleContent_vi: MyString
+  SimpleContent_en: MyString
+  Content_vi: MyString
+  Content_en: MyString
+  Status: 1
+  Pin: 1
+  Banner: 1
+  Place: 1
+  ViewCount: 1
+  Author: 1
+  PostTime: 2021-04-23 22:56:15
+  UpdateTime: 2021-04-23 22:56:15
+  Tags: MyString
+  cms_categories: 

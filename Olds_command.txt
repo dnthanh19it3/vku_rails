@@ -1,1 +1,3 @@
 rails g model cms_category ParentID:integer Name_vi:string Name_en:string Slug_vi:string Slug_en:string Index:integer
+rails g model cms MetaTitle:string  MetaDescription:string MetaKeyword:string Slug_vi:string Slug_en:string Title_vi:string Title_en:string Avatar:string SimpleContent_vi:string  SimpleContent_en:string Content_vi:string Content_en:string Status:integer Pin:integer Banner:integer Place:integer ViewCount:integer Author:integer PostTime:timestamp UpdateTime:timestamp Tags:string cms_categories:reference --force-plural
+https://phocode.com/ruby/ruby-on-rails/rails-phan-trang-voi-will_paginate/

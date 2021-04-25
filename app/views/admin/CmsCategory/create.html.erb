@@ -1,8 +1,8 @@
 @extends('admin.layout.master')
 @section('title', 'Tạo bài viết')
 <% content_for :body do %>
-<form method="post" action="{{route('admin.cmscategory.store')}}">
-    @csrf
+<form method="post" action="<%=category_store_path%>">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="row mb-3">
         <div class="col-md-8"></div>
         <div class="col-md-4"><button type="submit" class="btn btn-success float-right">Lưu</button></div>
@@ -28,6 +28,7 @@
                         <label class="col-md-4 control-label" for="Slug_vi">Slug tiếng Việt</label>
                         <div class="col-md-12">
                             <input id="Slug_vi" name="Slug_vi" type="text" placeholder="Slug" class="form-control input-md" required1="">
+                            <input name="Index" type="text" placeholder="Slug" class="form-control input-md" hidden value="1 ">
                         </div>
                     </div>
                     <!-- Text input-->
@@ -45,6 +46,24 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#Name_vi').on('input', function() {
+                            console.log($('#Name_vi').val());
+                            $('#Slug_vi').val(ChangeToSlug($('#Name_vi').val()));
+                        });
+                    });
+
+                </script>
+                <script>
+                    $(document).ready(function() {
+                        $('#Name_en').on('input', function() {
+                            console.log($('#Name_en').val());
+                            $('#Slug_en').val(ChangeToSlug($('#Name_en').val()));
+                        });
+                    });
+
+                </script>
             </div>
         </div>
         <div class="col-lg-4">
@@ -59,9 +78,23 @@
                 <div class="collapse show" id="cmsCategory">
                     <div class="card-body">
                         <ul style="list-style: none">
-                            @foreach ($categories as $category)
-                            @include('admin.CmsCategory.rescusive', ['category' => $category])
-                            @endforeach
+                            <% @categoriesNest.each do |category| %>
+                            <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                <%if category.child != '' %>
+                                <ul style="list-style: none">
+                                    <% category.child.each do |category| %>
+                                        <li><input type="radio" value="<%= category.id %>" name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                        <%if category.child != '' %>
+                                            <ul style="list-style: none">
+                                                <% category.child.each do |category| %>
+                                                    <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                                <%end%>
+                                            </ul>
+                                        <%end%>
+                                    <%end%>
+                                </ul>
+                                <%end%>
+                            <%end%>
                         </ul>
                     </div>
                 </div>
@@ -85,7 +118,6 @@
             $('#Slug_vi').val(ChangeToSlug($('#Name_vi').val()));
         });
     });
-
 </script>
 <script>
     $(document).ready(function() {
@@ -94,6 +126,5 @@
             $('#Slug_en').val(ChangeToSlug($('#Name_en').val()));
         });
     });
-
 </script>
 @endsection

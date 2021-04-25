@@ -17,6 +17,19 @@
     <script src="http://ngocthanh909.tk/ckeditor/ckeditor.js"></script>
     <!-- Custom styles for this template-->
     <link href="http://ngocthanh909.tk/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css" />
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="http://ngocthanh909.tk/assets/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="http://ngocthanh909.tk/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="http://ngocthanh909.tk/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="http://ngocthanh909.tk/assets/admin/js/sb-admin-2.min.js"></script>
+    <script src="http://ngocthanh909.tk/assets/vku/js/slug.js"></script>
+    <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
 
 </head>
 <body id="page-top">
@@ -87,31 +100,23 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                @php
-                if(session('code') != null){
-                $code = session()->pull('code');
-                $msg = session()->pull('msg');
-                }
-                @endphp
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @isset($code)
-                    @if($code == 1)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Thành công</strong> {{$msg}}
+                    <%if flash[:status] == 1%>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Thành công</strong><%=flash[:msg]%>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    @elseif($code == 0)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Thất bại!</strong> {{$msg}}
+                        </div>
+                    <%elsif flash[:status] == 0%>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Thất bại!</strong> <%=flash[:msg]%>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    @endif
-                    @endisset
+                        </div>
+                    <%end%>
                     <%= yield :body %>
                 </div>
                 <!-- /.container-fluid -->
@@ -139,15 +144,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="http://ngocthanh909.tk/assets/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="http://ngocthanh909.tk/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="http://ngocthanh909.tk/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="http://ngocthanh909.tk/assets/admin/js/sb-admin-2.min.js"></script>
 
 </body>
 

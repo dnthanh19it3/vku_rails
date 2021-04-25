@@ -95,21 +95,24 @@
                 @endphp
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @isset($code)
-                    @if($code == 1)
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Thành công</strong> {{$msg}}
+                    <%if flash[:status] == 1%>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Thành công</strong><%=flash[:msg]%>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
+                        </div>
+                    <%else%>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Thất bại!</strong> <%=flash[:msg]%>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    <%end%>
+                    
                     @elseif($code == 0)
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Thất bại!</strong> {{$msg}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    
                     @endif
                     @endisset
                     <%= yield :body %>
