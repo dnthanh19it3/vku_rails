@@ -55,10 +55,10 @@
                                             <td><%=item.danh_muc_cha%></td>
                                             <td><%= item.Slug_vi %></td>
                                             <td>
-                                                <a href="<%= category_edit_path(:id => item.id) %>" class="btn btn-primary btn-circle btn-sm">
+                                                <a href="{{route('admin.cmscategory.edit', ['id' => $category->CategoryID])}}" class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="<%=category_drop_path(:id => item.id)%>" class="btn btn-danger btn-circle btn-sm">
+                                                <a href="#confirmDelete" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-delete="<%= category_store_path %>">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                         </a>
@@ -66,6 +66,10 @@
                                         </tr>
                                         
                                     <%end%>
+                                        @foreach($simpleCategories as $key => $category)
+                                        
+                                        
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -73,15 +77,11 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
-                                <%
-=begin%>
- <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div> 
-<%
-=end%>
+                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
                             </div>
                             <div class="col-sm-12 col-md-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                    
+                                    {{$simpleCategories->links()}}
                                 </div>
                             </div>
                         </div>
@@ -99,26 +99,10 @@
             <!-- Card Content - Collapse -->
             <div class="collapse show" id="cmsCategory">
                 <div class="card-body">
-                        <ul style="list-style: none">
-                            <% @categoriesNest.each do |category| %>
-                            <li><%=category.Name_vi%></li>
-                                <%if category.child != '' %>
-                                <ul style="list-style: none">
-                                    <% category.child.each do |category| %>
-                                        <li><%=category.Name_vi%></li>
-                                        <%if category.child != '' %>
-                                            <ul style="list-style: none">
-                                                <% category.child.each do |category| %>
-                                                    <li><%=category.Name_vi%></li>
-                                                <%end%>
-                                            </ul>
-                                        <%end%>
-                                    <%end%>
-                                </ul>
-                                <%end%>
-                            <%end%>
-                        </ul>
-                    </div>
+                    <ol id="nested">
+                                             
+                    </ol>
+                </div>
             </div>
         </div>
     </div>

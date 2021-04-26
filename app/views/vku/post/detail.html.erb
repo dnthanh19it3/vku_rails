@@ -26,9 +26,13 @@
             </div>
             <div class="hashtag-wrapper">
                 <ul class="hashtag-list">
-                    @foreach($tags as $key => $tag)
+                    <%
+=begin%>
+ @foreach($tags as $key => $tag)
                     <li class="hashtag-item"><a href="{{route('tagsView', ['tag' => $tag->Name])}}">{{$tag->Name}}</a></li>
-                    @endforeach
+                    @endforeach 
+<%
+=end%>
                 </ul>
             </div>
             <div class="row"><div class="col"><div class="fb-comments" data-href="<%=request.url%>" data-width="auto" data-numposts="5"></div></div></div>

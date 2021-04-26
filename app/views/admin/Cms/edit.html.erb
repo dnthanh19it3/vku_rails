@@ -1,5 +1,6 @@
-<% content_for :body do %>
-<form method="post" action="<%= cms_store_path%>" enctype="multipart/form-data">
+<%content_for :title do%>Sửa bài viết <%= @cm.Title_vi%><%end%>
+<%content_for :body do %>
+<form method="post" action="<%= cms_update_path %>" enctype="multipart/form-data">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="row mb-3">
         <div class="col-md-8"></div>
@@ -19,28 +20,29 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="Title_en">Tiêu đề</label>
                             <div class="col">
-                                <input id="Title_vi" name="Title_vi" type="text" placeholder="Tiêu đề" class="form-control input-md" required1="">
+                                <input id="Title_vi" name="Title_vi" type="text" placeholder="Tiêu đề" class="form-control input-md" value="<%=@cm.Title_vi%>">
+
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="Title_en">Tiêu đề (tiếng Anh)</label>
                             <div class="col">
-                                <input id="Title_en" name="Title_en" type="text" placeholder="Tiêu đề (tiếng Anh)" class="form-control input-md" required1="">
+                                <input id="Title_en" name="Title_en" type="text" placeholder="Tiêu đề (tiếng Anh)" class="form-control input-md" value="<%=@cm.Title_en%>">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="SimpleContent_vi">Mô tả ngắn</label>
                             <div class="col">
-                                <input id="SimpleContent_vi" name="SimpleContent_vi" type="text" placeholder="Mô tả" class="form-control input-md" required1="">
+                                <input id="SimpleContent_vi" name="SimpleContent_vi" type="text" placeholder="Mô tả" class="form-control input-md" value="<%=@cm.SimpleContent_vi%>">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="SimpleContent_en">Mô tả ngắn (tiếng Anh)</label>
                             <div class="col">
-                                <input id="SimpleContent_en" name="SimpleContent_en" type="text" placeholder="Mô tả" class="form-control input-md" required1="">
+                                <input id="SimpleContent_en" name="SimpleContent_en" type="text" placeholder="Mô tả" class="form-control input-md" value="<%=@cm.SimpleContent_en%>">
                             </div>
                         </div>
 
@@ -56,22 +58,20 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="Content_vi">Nội dung</label>
                         <div class="col">
-                            <textarea class="form-control" id="Content_vi" name="Content_vi" id="summary-ckeditor">Nội dung</textarea>
-
+                            <textarea class="form-control" id="Content_vi" name="Content_vi" id="summary-ckeditor"><%=@cm.Content_vi%></textarea>
                         </div>
                     </div>
                     <script>
-                        CKEDITOR.replace('Content_vi', {
-                            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}"
-                            , filebrowserUploadMethod: 'form'
-                        })
-
-                    </script>
+                         CKEDITOR.replace('Content_vi', {
+                             filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}"
+                             , filebrowserUploadMethod: 'form'
+                         })
+                    </script> 
                     <!-- Textarea -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="Content_en">Nội dung (tiếng Anh)</label>
                         <div class="col">
-                            <textarea class="form-control" id="Content_en" name="Content_en">Nội dung</textarea>
+                            <textarea class="form-control" id="Content_en" name="Content_en"><%=@cm.Content_en%></textarea>
                         </div>
                     </div>
                     <script>
@@ -117,8 +117,13 @@
                         <label class="col-md-4 control-label" for="Place">Banner</label>
                         <div class="col-12">
                             <div class="checkbox">
+                                <%if @cm.Banner%>
                                 <input type="radio" name="Banner" id="" value="1"> Đặt
                                 <input type="radio" name="Banner" id="" value="0" checked> Không đặt
+                                <%else%>
+                                <input type="radio" name="Banner" id="" value="0"> Đặt
+                                <input type="radio" name="Banner" id="" value="1" checked> Không đặt
+                                <%end%>
                                 </label>
                             </div>
                         </div>
@@ -138,11 +143,11 @@
                 <div class="collapse show" id="seo">
                     <div class="card-body">
                         <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-                            <label>Upload File
+                            <label>Ảnh đại diện - Preview
                                 <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a>
                             </label>
                             <label class="custom-file-container__custom-file">
-                                <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image" aria-label="Choose File" name="Avatar" />
+                                <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image" aria-label="Chọn ảnh" name="Avatar" />
                                 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                                 <span class="custom-file-container__custom-file__custom-file-control"></span>
                             </label>
@@ -151,23 +156,23 @@
                         <fieldset>
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="MetaTitle">Meta Tiitle</label>
+                                <label class="col-md-4 control-label" for="MetaTitle"></label>
                                 <div class="col-md-12">
-                                    <input id="MetaTitle" name="MetaTitle" type="text" placeholder="Meta Title" class="form-control input-md" required1="">
+                                    <input id="MetaTitle" name="MetaTitle" type="text" placeholder="Meta Title" class="form-control input-md" value="<%=@cm.MetaTitle%>">
                                 </div>
                             </div>
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="MetaKeyword">Meta Keyword</label>
                                 <div class="col-md-12">
-                                    <input id="MetaKeyword" name="MetaKeyword" type="text" placeholder="Meta Keyword" class="form-control input-md" required1="">
+                                    <input id="MetaKeyword" name="MetaKeyword" type="text" placeholder="Meta Keyword" class="form-control input-md" value="<%=@cm.MetaKeyword%>">
                                 </div>
                             </div>
                             <!-- Hashtag-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="MetaKeyword">Tags</label>
                                 <div class="col-md-12">
-                                    <input id="Tags" name="Tags" type="text" placeholder="Ví dụ: ozawa,mikami" class="form-control input-md" required1="">
+                                    <input id="Tags" name="Tags" type="text" placeholder="Ví dụ: ozawa,mikami" class="form-control input-md" value="<%=@cm.Tags%>">
                                     <small>Tag viết liền không dấu, phân tách bởi dấu phảy (,)</small>
                                 </div>
                             </div>
@@ -175,8 +180,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="MetaDescription">Meta Description</label>
                                 <div class="col-md-12">
-                                    <input id="MetaDescription" name="MetaDescription" type="text" placeholder="Meta Description" class="form-control input-md" required1="">
-
+                                    <input id="MetaDescription" name="MetaDescription" type="text" placeholder="Meta Description" class="form-control input-md" value="<%=@cm.MetaDescription%>">
                                 </div>
                             </div>
 
@@ -184,8 +188,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Slug_vi">Slug tiếng Việt</label>
                                 <div class="col-md-12">
-                                    <input id="Slug_vi" name="Slug_vi" type="text" placeholder="Slug" class="form-control input-md" required1="">
-
+                                    <input id="Slug_vi" name="Slug_vi" type="text" placeholder="Slug" class="form-control input-md" value="<%=@cm.Slug_vi%>">
                                 </div>
                             </div>
 
@@ -193,7 +196,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Slug_en">Slug tiếng Anh</label>
                                 <div class="col-md-12">
-                                    <input id="Slug_en" name="Slug_en" type="text" placeholder="Slug" class="form-control input-md" required1="">
+                                    <input id="Slug_en" name="Slug_en" type="text" placeholder="Slug" class="form-control input-md" value="<%=@cm.Slug_en%>">
                                 </div>
                             </div>
 
@@ -212,15 +215,15 @@
                     <div class="card-body">
                         <ul style="list-style: none">
                             <% @categoriesNest.each do |category| %>
-                            <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                            <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2" <%if category.id == @cm.cms_category_id%>checked<%end%>><%=category.Name_vi%></li>
                                 <%if category.child != '' %>
                                 <ul style="list-style: none">
                                     <% category.child.each do |category| %>
-                                        <li><input type="radio" value="<%= category.id %>" name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                        <li><input type="radio" value="<%= category.id %>" name="CategoryID" class="mr-2" <%if category.id == @cm.cms_category_id%><%="checked"%><%end%>><%=category.Name_vi%></li>
                                         <%if category.child != '' %>
                                             <ul style="list-style: none">
                                                 <% category.child.each do |category| %>
-                                                    <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                                    <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"<%if category.id == @cm.cms_category_id%><%="checked"%><%end%>><%=category.Name_vi%></li>
                                                 <%end%>
                                             </ul>
                                         <%end%>

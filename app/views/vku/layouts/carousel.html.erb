@@ -1,4 +1,6 @@
-<div class="container-fluid">
+<%
+=begin%>
+ <div class="container-fluid">
     <div id="row">
         <div class="col-12">
             <!--Carousel Wrapper-->
@@ -12,8 +14,14 @@
                 <!--/.Indicators-->
                 <!--Slides-->
                 <div class="carousel-inner" role="listbox">
-                    @foreach($banners as $key => $banner)
-                    <div class="carousel-item @if($key == 0) active @endif">
+                    <%i=0%>
+                    <%@carousel.each do |cm|%>
+                    <%if cm.Avatar.to_s.include? "http"%>
+                    <% avatar = "http://"+cm.Avatar.to_s.slice(cm.Avatar.to_s.index("http")+8, cm.Avatar.to_s.length)%>
+                    <%else%>
+                        <% avatar = cm.Avatar.url%>
+                    <%end%>
+                    <div class="carousel-item <%if i ==0%>active<%end%>>
                         <div class="view">
                             <img class="d-block w-100" src="{{asset($banner->Avatar)}}" alt="">
                             <div class="mask rgba-black-light"></div>
@@ -23,12 +31,13 @@
     font-weight: 500;
     color: white;
     text-shadow: 2px 2px 10px #606f7b;">
-                                {{$banner->Title_vi}}
+                                <%=cm.Title_vi%>
                             </a>
                             <p>{{$banner->SimpleContent_vi}}</p>
                         </div>
                     </div>
-                    @endforeach
+                    <%i+=1%>
+                    <%end%>
                 </div>
                 <!--/.Slides-->
                 <!--Controls-->
@@ -46,4 +55,9 @@
 
         </div>
     </div>
-</div>
+</div> 
+<%
+=end%>
+
+
+Carousel

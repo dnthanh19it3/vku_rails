@@ -1,5 +1,332 @@
+<%content_for :title do%>Trang chủ<%end%>
 <%content_for :body do%>
-<% render template: "vku/layouts/carousel" %>
+
+<div class="container-fluid ml-0 mr-0"><div class="container-fluid">
+    <div id="row">
+        <div class="col-12">
+            <!--Carousel Wrapper-->
+            <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    <%i=0%>
+                    <%@carousel.each do |cm|%>
+                        <li data-target="#carousel-example-2" data-slide-to="0" class=""></li>
+                        <%i+=1%>
+                    <%end%>
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                <%i=0%>
+                <%@carousel.each do |cm|%>
+                <%if cm.Avatar.to_s.include? "http"%>
+                <% avatar = "http://"+cm.Avatar.to_s.slice(cm.Avatar.to_s.index("http")+8, cm.Avatar.to_s.length)%>
+                <%else%>
+                <% avatar = cm.Avatar.url%>
+                <%end%>                    
+                                        <div class="carousel-item <%if i == 0%>active<%end%>">
+                        <div class="view">
+                            <img class="d-block w-100" src="<%=avatar%>" alt="">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <a href="<%=vku_post_detail_path(:slug => cm.Slug_vi)%>" style="font-size: 30px;font-weight: 500;color: white;text-shadow: 2px 2px 10px #606f7b;">
+                                <%=cm.Title_vi%>
+                            </a>
+                            <p><%=cm.SimpleContent_vi%></p>
+                        </div>
+                    </div>
+                    <%i+=1%>
+                    <%end%>
+                                    </div>
+                                    
+                <!--/.Slides-->
+                <!--Controls-->
+                <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!--/.Controls-->
+            </div>
+            <!--/.Carousel Wrapper-->
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+    <div class="col-md-5">
+        <div class="default-block">
+            <div class="title title-left-red mb-3">
+                tin tức - sự kiện nổi bật
+            </div>
+            <ul class="newevent-container">
+                                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="http://vku.udn.vn/uploads/2020/07/16/109656929_175310907362215_892481267078694723_o (1).jpg">
+                            <span class="time-badge">Jan-01-2021</span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="http://ngocthanh909.tk/baiviet/10-doi-thi-bwd-sict-2020-da-hoan-thanh-xuat-sac-truoc-hoi-dong-ban-giam-khao-vong-thi-hackathon">10 đội thi BWD-SICT-2020 đã hoàn thành xuất sắc trước Hội đồng ban giám khảo vòng thi HACKATHON</a></div>
+                        <div class="description">10 đội thi tại vòng Hackathon sẽ có 5 tiếng để tham gia thi từ 8h00 đến 13h00 sáng ngày 16/07/2020. Tại đây, các đội đã vận dụng tất cả kiến thức lĩnh hội được từ nhà trường vào nghiên cứu tìm hiểu các nền tảng hỗ trợ để phát triển ý tưởng và hiện thực hóa thông qua sản phẩm website của mình.</div>
+                    </div>
+                </li>
+                                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="http://vku.udn.vn/uploads/2020/05/19/9.jpg">
+                            <span class="time-badge">Jan-01-2021</span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="http://ngocthanh909.tk/baiviet/bo-truong-va-doan-cong-tac-bo-giao-duc-va-dao-tao-lam-viec-voi-dai-hoc-da-nang-ve-chien-luoc-phat-trien-trong-giai-doan-moi">Bộ trưởng và đoàn công tác Bộ Giáo dục và Đào tạo làm việc với Đại học Đà Nẵng về chiến lược phát triển trong giai đoạn mới</a></div>
+                        <div class="description">Sáng ngày 18/5, GS.TS. Phùng Xuân Nhạ-Ủy viên Ban chấp hành Trung ương Đảng, Bí thư Ban cán sự, Bộ trưởng Bộ Giáo dục và Đào tạo (GD&amp;amp;ĐT) và đoàn công tác đã làm việc với Đại học Đà Nẵng (ĐHĐN) về chiến lược phát triển trong giai đoạn mới. </div>
+                    </div>
+                </li>
+                                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg">
+                            <span class="time-badge">Jan-01-2021</span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="http://ngocthanh909.tk/baiviet/quyet-dinh-thanh-lap-truong-dai-hoc-cntt-va-truyen-thong-viet-han-dai-hoc-da-nang">Quyết định thành lập trường Đại học CNTT và Truyền thông Việt - Hàn - Đại học Đà Nẵng</a></div>
+                        <div class="description">Quyết định số 15/QĐ-TTg về việc thành lập trường Đại học CNTT và Truyền thông Việt - Hàn là trường đại học thành viên của Đại học Đà Nẵng, được Phó Thủ tướng Vũ Đức Đam ký ban hành hôm nay, ngày 3/1/2020</div>
+                    </div>
+                </li>
+                                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="http://vku.udn.vn/uploads/2020/05/22/avatar.jpg">
+                            <span class="time-badge">Jan-01-2021</span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="http://ngocthanh909.tk/baiviet/gap-mat-toan-the-can-bo-vien-chuc-truong-dai-hoc-cong-nghe-thong-tin-truyen-thong-viet-han-dhdn">Gặp mặt toàn thể cán bộ viên chức Trường Đại học Công nghệ Thông tin &amp;amp; Truyền thông Việt Hàn - ĐHĐN</a></div>
+                        <div class="description">Ngày 19/5/2020, tại hội Trường Khu K, Trường Đại học Công nghệ Thông tin và Truyền thông Việt – Hàn - Đại học Đà Nẵng đã tổ chức buổi gặp mặt giữa Hiệu trưởng và toàn thể CBVC nhà trường. </div>
+                    </div>
+                </li>
+                                <li class="newevent-item">
+                    <div class="newevent-picture-wrapper">
+                        <div class="newevent-picture">
+                            <img src="http://vku.udn.vn/uploads/2020/05/23/bwd.png">
+                            <span class="time-badge">Jan-01-2021</span>
+                        </div>
+                    </div>
+                    <div class="newevent-article">
+                        <div class="title-wrapper"><a class="title" href="http://ngocthanh909.tk/baiviet/thong-bao-cuoc-thi-best-website-design-for-students-of-information-and-communication-technology-bwd-sict-2020-bwd-sict-2020">Thông báo Cuộc thi Best website design for students of Information and Communication Technology BWD – SICT 2020 BWD-SICT 2020</a></div>
+                        <div class="description">Nhằm mục tiêu nâng cao chất lượng đào tạo, đáp ứng nhu cầu nguồn nhân lực chất lượng cao, theo kịp Cuộc cách mạng công nghiệp 4.0, Trường Đại học Công nghệ Thông tin &amp;amp; Truyền thông Việt Hàn phối hợp với Khoa Công nghệ Thông tin và Truyền thông – Đại học Đà Nẵng tổ chức Cuộc thi Best website design for students of Information and Communication Technology BWD – SICT 2020</div>
+                    </div>
+                </li>
+                            </ul>
+        </div>
+        <div class="default-block mt-3 mb-3">
+            <div class="title title-left-red  mb-3">
+                tin tức - sự kiện khác
+            </div>
+            <ul class="newevent-container">
+                                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="storage/PostImage/01-10-2021_0856pm.jpg">
+                    </div>
+                    <div class="otherev-link"><a href="http://ngocthanh909.tk/baiviet/tong-lanh-su-han-quoc-tai-da-nang-ngai-ahn-min-sik-den-tham-va-lam-viec-tai-vku">Tổng lãnh sự Hàn Quốc tại Đà Nẵng - Ngài Ahn Min Sik đến thăm và làm việc tại VKU</a></div>
+                </li>
+                                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="storage/PostImage/01-11-2021_0646pm.jpg">
+                    </div>
+                    <div class="otherev-link"><a href="http://ngocthanh909.tk/baiviet/dai-hoi-dai-bieu-doan-tncs-ho-chi-minh-lan-thu-i-nhiem-ky-2020-2022">Đại hội Đại biểu Đoàn TNCS Hồ Chí Minh lần thứ I, nhiệm kỳ 2020 - 2022</a></div>
+                </li>
+                                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg">
+                    </div>
+                    <div class="otherev-link"><a href="http://ngocthanh909.tk/baiviet/chuc-nang-nhiem-vu">Chức năng nhiệm vụ</a></div>
+                </li>
+                                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg">
+                    </div>
+                    <div class="otherev-link"><a href="http://ngocthanh909.tk/baiviet/gioi-thieu">Giới thiệu</a></div>
+                </li>
+                                <li class="otherev-item">
+                    <div class="otherev-img">
+                        <img src="https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg">
+                    </div>
+                    <div class="otherev-link"><a href="http://ngocthanh909.tk/baiviet/to-khao-thi-thanh-tra-kdcl">Tổ khảo thí, thanh tra &amp;amp; KĐCL</a></div>
+                </li>
+                            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="default-block mb-3">
+            <div class="title title-left-yellow  mb-3">
+                thông báo
+            </div>
+                        <ul class="newevent-container">
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/chuc-nang-nhiem-vu">Chức năng nhiệm vụ</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/gioi-thieu">Giới thiệu</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/to-khao-thi-thanh-tra-kdcl">Tổ khảo thí, thanh tra &amp;amp; KĐCL</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/to-hop-tac-quoc-te">Tổ hợp tác Quốc tế</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/co-cau-to-chuc">Cơ cấu tổ chức</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/10-doi-thi-bwd-sict-2020-da-hoan-thanh-xuat-sac-truoc-hoi-dong-ban-giam-khao-vong-thi-hackathon">10 đội thi BWD-SICT-2020 đã hoàn thành xuất sắc trước Hội đồng ban giám khảo vòng thi HACKATHON</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/ba-cong-khai">Ba công khai</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/bo-truong-va-doan-cong-tac-bo-giao-duc-va-dao-tao-lam-viec-voi-dai-hoc-da-nang-ve-chien-luoc-phat-trien-trong-giai-doan-moi">Bộ trưởng và đoàn công tác Bộ Giáo dục và Đào tạo làm việc với Đại học Đà Nẵng về chiến lược phát triển trong giai đoạn mới</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/quyet-dinh-thanh-lap-truong-dai-hoc-cntt-va-truyen-thong-viet-han-dai-hoc-da-nang">Quyết định thành lập trường Đại học CNTT và Truyền thông Việt - Hàn - Đại học Đà Nẵng</a></div>
+                </li>
+                                    <li class="annou-item">
+                    <div class="annou-time">
+                        <div class="dm">01-01</div>
+                        <div class="y">2021</div>
+                    </div>
+                    <div class="annou-link"><a href="http://ngocthanh909.tk/baiviet/cuoc-thi-tieng-anh-trong-sinh-vien-star-awards-nam-hoc-2019-2020-voi-chu-de-technovation-doi-moi-sang-tao-khoa-hoc-cong-nghe">Cuộc thi tiếng Anh trong sinh viên Star Awards năm học 2019 - 2020 với chủ đề Technovation - Đổi mới sáng tạo, khoa học công nghệ</a></div>
+                </li>
+                            </ul>
+        </div>
+
+        <div class="default-block mt-3 mb-3">
+            <div class="title title-left-yellow mb-3">
+                social media
+            </div>
+            <div class="social-media">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fvku.udn.vn&amp;tabs=timeline&amp;width=500&amp;height=700&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId=947748449088802" width="500" height="700" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="default-block">
+            <div class="title title-left-blue">
+                đối tác
+            </div>
+            <div class="sponsor-wrapper" style="position: relative; overflow: hidden;">
+                <ul id="demo" style="position: absolute; top: 0px; left: 0px; height: 1000%;">
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li>
+                <li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li><li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li><li>
+                        <div class="sponsor-item">
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                            <div class="sponsor-single">
+                                <img src="http://vku.udn.vn/uploads/doitac/donga.jpg">
+                            </div>
+                        </div>
+                    </li></ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<!--END-->
+
 <div class="row">
     <div class="col-md-5">
         <div class="default-block">

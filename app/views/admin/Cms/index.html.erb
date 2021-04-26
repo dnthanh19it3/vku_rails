@@ -36,7 +36,7 @@
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 119px;">Tên bài viết</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 57px;">Vị trí</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Thời gian</th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tác giả</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Lượt xem</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Thao tác</th>
                                 </tr>
                             </thead>
@@ -46,7 +46,7 @@
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 119px;">Tên bài viết</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 57px;">Vị trí</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Thời gian</th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Tác giả</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Lượt xem</th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Thao tác</th>
                                 </tr>
                             </tfoot>
@@ -57,18 +57,17 @@
                                     <td class="sorting_1"><%=cm.Title_vi%></td>
                                     <td>
                                         <span class="badge badge-primary">vku</span>
-                                        <img src="<%= cm.Avatar.url %>">
                                     </td>
                                     <td><%=cm.created_at%></td>
-                                    <td>Admin</td>
+                                    <td><%=cm.ViewCount%></td>
                                     <td>
-                                        <a href="{{route('admin.cms.edit', ['id' => $cms->CmsID])}}" class="btn btn-primary btn-circle btn-sm">
+                                        <a href="<%=cms_edit_path(cm.Slug_vi)%>" class="btn btn-primary btn-circle btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#confirmDelete" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-delete="{{route('admin.cms.delete', ['id' => $cms->CmsID])}}">
+                                        <a href="#confirmDelete" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-delete="<%=cms_drop_path(:slug => cm.Slug_vi)%>">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                        <a href="{{route('postView', ['slug' => $cms->Slug_vi])}}" class="btn btn-success btn-circle btn-sm" data-delete="{{route('admin.cms.delete', ['id' => $cms->CmsID])}}" target="_blank">
+                                        <a href="<%=vku_post_detail_path(:slug => cm.Slug_vi)%>" class="btn btn-success btn-circle btn-sm" data-delete="{{route('admin.cms.delete', ['id' => $cms->CmsID])}}" target="_blank">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     </td>
@@ -114,9 +113,6 @@
         </div>
     </div>
 </div>
-<%end%>
-@endsection
-@section('custom_script')
 <script type="text/javascript">
     $('#confirmDelete').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -125,6 +121,10 @@
         b.setAttribute("onclick", "window.location.href='" + link + "'");
     })
 </script>
+<%end%>
+@endsection
+@section('custom_script')
+
 @endsection
 @section('custom_css')
 <style>
