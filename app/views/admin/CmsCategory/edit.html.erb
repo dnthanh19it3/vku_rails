@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('title', 'Tạo bài viết')
 <% content_for :body do %>
-<form method="post" action="<%=category_store_path%>">
+<form method="post" action="<%=category_update_path(:id => @category.id)%>">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="row mb-3">
         <div class="col-md-8"></div>
@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="MetaTitle">Tên danh mục (Tiếng Việt)</label>
                         <div class="col-md-12">
-                            <input id="Name_vi" name="Name_vi" type="text" placeholder="Tên danh mục (tiếng Việt)" class="form-control input-md" required1="">
+                            <input id="Name_vi" name="Name_vi" type="text" placeholder="Tên danh mục (tiếng Việt)" class="form-control input-md" value="<%=@category.Name_vi%>">
                         </div>
                     </div>
                     <!-- Text input-->
@@ -28,21 +28,21 @@
                         <label class="col-md-4 control-label" for="Slug_vi">Slug tiếng Việt</label>
                         <div class="col-md-12">
                             <input id="Slug_vi" name="Slug_vi" type="text" placeholder="Slug" class="form-control input-md" required1="">
-                            <input name="Index" type="text" placeholder="Slug" class="form-control input-md" hidden value="1 ">
+                            <input name="Index" type="text" placeholder="Slug" class="form-control input-md" hidden value="1 "value="<%=@category.Slug_vi%>">
                         </div>
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="MetaTitle">Tên danh mục (tiếng Anh)</label>
                         <div class="col-md-12">
-                            <input id="Name_en" name="Name_en" type="text" placeholder="Tên danh mục (tiếng Anh)" class="form-control input-md" required1="">
+                            <input id="Name_en" name="Name_en" type="text" placeholder="Tên danh mục (tiếng Anh)" class="form-control input-md" value="<%=@category.Name_en%>">
                         </div>
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="Slug_en">Slug tiếng Anh</label>
                         <div class="col-md-12">
-                            <input id="Slug_en" name="Slug_en" type="text" placeholder="Slug" class="form-control input-md" required1="">
+                            <input id="Slug_en" name="Slug_en" type="text" placeholder="Slug" class="form-control input-md" value="<%=@category.Slug_en%>">
                         </div>
                     </div>
                 </div>
@@ -79,15 +79,15 @@
                     <div class="card-body">
                         <ul style="list-style: none">
                             <% @categoriesNest.each do |category| %>
-                            <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                            <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2" <%if @category.ParentID == category.id %><%="checked"%><%end%>><%=category.Name_vi%></li>
                                 <%if category.child != '' %>
                                 <ul style="list-style: none">
                                     <% category.child.each do |category| %>
-                                        <li><input type="radio" value="<%= category.id %>" name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                        <li><input type="radio" value="<%= category.id %>" name="CategoryID" class="mr-2" <%if @category.ParentID == category.id %>%="checked"%><%end%>><%=category.Name_vi%></li>
                                         <%if category.child != '' %>
                                             <ul style="list-style: none">
                                                 <% category.child.each do |category| %>
-                                                    <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2"><%=category.Name_vi%></li>
+                                                    <li><input type="radio" value="<%= category.id %>"  name="CategoryID" class="mr-2" <%if @category.ParentID == category.id %>%="checked"%><%end%>><%=category.Name_vi%></li>
                                                 <%end%>
                                             </ul>
                                         <%end%>

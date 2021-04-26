@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     get "/admin/category", to: "admin#category_index", :as => :category_index
     get "/admin/category/create", to: "admin#category_create", :as => :taodanhmuc
     post "/admin/category/store", to: "admin#category_store", :as => :category_store
+    
     get "/admin/category/edit/:id", to: "admin#category_edit", :as => :category_edit
+    post "/admin/category/update/:id", to: "admin#category_update", :as => :category_update
+
     get "/admin/category/delete/:id", to: "admin#category_drop", :as => :category_drop
     # CMS
     get "/admin/cms", to: "admin#cms_index", :as => :cms_index

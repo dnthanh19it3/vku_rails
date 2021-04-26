@@ -58,6 +58,7 @@ class AdminController < ApplicationController
     def category_edit
         @category = CmsCategory.find_by(:id => params[:id])
         @categoriesNest = createNested(CmsCategory.all, 0)
+        # render json: @category
         render "admin/CmsCategory/edit"
     end
     def category_update
