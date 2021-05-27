@@ -4,13 +4,6 @@ class AdminController < ApplicationController
     before_action :check_login
     skip_before_action :check_login, only: [:login, :register, :index, :detail, :browse]
     
-    # Helpler
-    def login
-        
-    end
-    def register
-
-    end
     def check_login
         if(session[:user_id] == nil)
             redirect_to admin_login_path
@@ -21,19 +14,7 @@ class AdminController < ApplicationController
         render "admin/index/index"
     end
     def category_index
-        # @categories = CmsCategory.joins("INNER JOIN cms_categories a ON cms_categories.ParentID = a.id")
         @categories = CmsCategory.find_by_sql("SELECT a.id, a.Name_vi, b.Slug_vi, b.Name_vi as 'danh_muc_cha' FROM  cms_categories a INNER JOIN cms_categories b ON b.id = a.ParentID")
-        # @categories = CmsCategory.all
-        # i = 0
-        # @categories.each do |cm|
-        #     if(parent = CmsCategory.find_by_id(cm.ParentID))
-        #         @categories[i].parent = parent.Name_vi
-        #         i += 1
-        #     else
-        #         @categories[i].parent = "N/A"
-        #         i += 1
-        #     end
-        # end
         @categoriesNest = createNested(CmsCategory.all, 0)
         render "admin/CmsCategory/index"
         # render json: @categories
